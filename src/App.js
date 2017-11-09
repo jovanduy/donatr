@@ -134,8 +134,10 @@ class App extends Component {
     }
 
     handleSearchChange(e) {
+        // on mobile, when you click on the search bar it scrolls down,
+        // so this is to prevent that
         document.body.scrollTop = 0; // For Chrome, Safari and Opera 
-    document.documentElement.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
         const search = e.target.value;
         if (search) {
             this.setState({
@@ -185,6 +187,7 @@ class App extends Component {
     }
 
     getContents() {
+        // control the logic for which page to render under the header
         switch(this.state.currentPage) {
             case pages.home:
                 return (
@@ -218,6 +221,13 @@ class App extends Component {
     }
 
   render() {
+    // This is the main page! 
+    // The header is always there
+    // The first two { } sets are to control the logic of keeping the
+    // same search bar on both the home page and the search results page
+    // The third { } where it says { this.getContents() } refers to the 
+    // getContents function above. Basically what that does is based on 
+    // which page should be displayed, it will display that component!
     return (
       <div className="App" tabindex="0">
         <Header loggedIn={this.state.loggedIn} goHome={this.clickHome} goLogin={this.clickLogin} goProfile={this.clickProfile}/>
