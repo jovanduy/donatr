@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+.App:focus {
+    outline: 0px;
+}
+
 input {
     font-size: 16px !important;
 }
