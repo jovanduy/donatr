@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Breadcrumb, Button, ControlLabel, FormGroup, FormControl, FieldGroup, ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
-import BigCalendar from 'react-big-calendar';
+//import BigCalendar from 'react-big-calendar';
 //import moment from 'moment';
 //import 'react-big-calendar/lib/css/react-big-calendar.css';
 
