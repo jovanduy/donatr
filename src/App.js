@@ -196,7 +196,7 @@ class App extends Component {
                 );
             case pages.result:
                 return (
-                    <Result data={this.state.result} goBack={this.handleBackToResults} pickup={this.centerPickupChosen} />
+                    <Result data={this.state.result} goBack={this.handleBackToResults} pickup={this.centerPickupChosen} loggedIn={this.state.loggedIn} goLogin={this.clickLogin} />
                 );
             case pages.login:
                 return (

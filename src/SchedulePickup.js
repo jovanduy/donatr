@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Breadcrumb, Button, ControlLabel, FormGroup, FormControl, FieldGroup } from 'react-bootstrap';
+import { Breadcrumb, Button, ControlLabel, FormGroup, FormControl, FieldGroup, ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
 
 const employeeText = "An employee of the donation center will meet you at the specified location to pickup your items and bring them to the center.";
 const volunteerText = "A volunteer, who is unafilliated with the donation center or Donatr, but is just another user of Donatr, will meet you at the specified location to pickup your items and bring them to the center.";
@@ -13,6 +13,20 @@ class SchedulePickup extends Component {
         super();
         this.togglePickup = this.togglePickup.bind(this);
         this.handleBackClick = this.handleBackClick.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.state = {
+            modal: false,
+            date: null
+        };
+    }
+
+    showModal() {
+        this.setState({modal: true});
+    }
+
+    closeModal() {
+        this.setState({modal: false});
     }
 
     togglePickup() {
@@ -49,7 +63,38 @@ class SchedulePickup extends Component {
                         />
                     </FormGroup>
                 </form>
-                <Button bsStyle="primary" className="pickup-submit">Submit</Button>
+                <Button bsStyle="primary" className="pickup-submit" onClick={this.showModal}>Submit</Button>
+                <Modal show={this.state.modal} onHide={this.closeModal}>
+                    <Modal.Header>
+                        <Modal.Title>Confirm into</Modal.Title>
+                        <p>{(this.props.center ? "Employee" : "Volunteer") + " pick-up"}</p>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <ListGroup>
+                            <ListGroupItem>
+                                <p>Items to be picked up:</p>
+                                <p className="pickup-items-summary">1 large futon</p>
+                                <p className="pickup-items-summary">5 small pillows</p>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <p>Address:</p>
+                                <p className="pickup-items-summary">1000 Olin Way,</p>
+                                <p className="pickup-items-summary">Needham, MA 02492</p>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <p>Time:</p>
+                                <p className="pickup-items-summary">Sunday, October 29, 2017</p>
+                                <p className="pickup-items-summary">12PM - 2PM</p>
+                            </ListGroupItem>
+                            <ListGroupItem bsStyle="info">
+                                Confirm
+                            </ListGroupItem>
+                            <ListGroupItem bsStyle="danger" onClick={this.closeModal}>
+                                Cancel
+                            </ListGroupItem>
+                        </ListGroup>
+                    </Modal.Body>
+                </Modal>
             </div>
         );
     }

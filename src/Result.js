@@ -9,10 +9,20 @@ class Result extends Component {
         this.handleBackClick = this.handleBackClick.bind(this);
         this.handleVolunteerPickup = this.handleVolunteerPickup.bind(this);
         this.handleCenterPickup = this.handleCenterPickup.bind(this);
+        this.handleRequestPickup = this.handleRequestPickup.bind(this);
         this.state = {
             modal: false
         };
     }
+
+    handleRequestPickup() {
+        if (this.props.loggedIn) {
+            this.showModal();
+        } else {
+            this.props.goLogin();
+        }
+    }
+
     showModal() {
         this.setState({modal: true});
     }
@@ -54,7 +64,7 @@ class Result extends Component {
                 <div style={{width: "40%", paddingTop: "30%", margin: "5px", display: "inline-block", backgroundColor:"gray"}}></div>
                 <p><span className="accept">accepts: </span><span>{this.props.data.accepts}</span></p>
                 <p><span className="accept">doesn't accept: </span><span>{this.props.data.no}</span></p>
-                <Button bsStyle="primary" onClick={this.showModal}>schedule pickup</Button>
+                <Button bsStyle="primary" onClick={this.handleRequestPickup}>schedule pickup</Button>
                 <Modal show={this.state.modal} onHide={this.closeModal}>
                     <Modal.Header>
                         <Modal.Title>Schedule Pick-up</Modal.Title>
