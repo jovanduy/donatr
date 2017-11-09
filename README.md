@@ -8,6 +8,7 @@ npm start
 
 Then go to localhost:3000
 
+go to https://donatr-jaapokki.herokuapp.com/ to see the live version
 
 ## React
 
