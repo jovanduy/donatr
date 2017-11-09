@@ -4,65 +4,87 @@
   height: 100%;
 }
 
+/*
+ * for some reason it was highlighting the overall main div
+ * because I removed the focusability of buttons..?
+ */
 .App:focus {
     outline: 0px;
 }
 
+/*
+ * font size on all input fields needs to be 16px so mobile browsers
+ * do not zoom in when they are clicked on
+ */
 input {
     font-size: 16px !important;
 }
 
+textarea {
+    font-size: 16px !important;
+}
+
 .header {
-  //padding: 20px 0px;
   padding-bottom: 20px;
   color: black;
 }
 
+/* desctiption text on home page */
 .description {
     padding: 20px;
     color: #7D94B3;
     font-size: 15px;
 }
 
+/* DONATR text in header */
 .donatr {
   font-size: 30px;
   font-style: italic;
   cursor: pointer;
 }
 
+/* the login/profile button in the header */
 .header-right {
     font-size: 1.5em;
     cursor: pointer;
     float: right;
 }
 
+/* each individual result in the search results page*/
 .resultSummary {
     cursor: pointer;
     border-bottom: 1px solid lightgray !important;
 }
 
+/* the overall scrollable results list */
 .results {
     height: 500px;
     margin: 1em;
     overflow: scroll;
 }
 
+/* the accept text in the result description */
 .accept {
     font-weight: bold;
 }
 
+/* the distance text for how far away a result is */
 .dist {
     color: gray;
     float: right;
 }
 
+/* phone number of a result */
 .phone {
     cursor: pointer;
 }
+
+/* address of a result, but only on the individual result page */
 .result .address {
     cursor: pointer;
 }
 
+/* address of a result */
 .address {
     color: gray;
 }
@@ -88,11 +110,13 @@ input {
     color: white;
 }
 
+/* arrow that shows wheter a part of the profile page is expanded */
 .arrow {
     color: #7D94B3;
     float: right;
 }
 
+/* panel on the profile page */
 .panel {
     margin-bottom: 0px;
 }
