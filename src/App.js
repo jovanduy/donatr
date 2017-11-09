@@ -134,6 +134,8 @@ class App extends Component {
     }
 
     handleSearchChange(e) {
+        document.body.scrollTop = 0; // For Chrome, Safari and Opera 
+    document.documentElement.scrollTop = 0; 
         const search = e.target.value;
         if (search) {
             this.setState({
@@ -217,7 +219,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" tabindex="0">
         <Header loggedIn={this.state.loggedIn} goHome={this.clickHome} goLogin={this.clickLogin} goProfile={this.clickProfile}/>
         { this.state.currentPage === pages.home ? <Home /> : null }
         {

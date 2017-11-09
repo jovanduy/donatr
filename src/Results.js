@@ -53,7 +53,7 @@ class Results extends Component {
             );
         });*/
         return (
-            <div className="results">
+            <div className="results ">
                 {this.getResults()}
             </div>
         );

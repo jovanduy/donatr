@@ -30,6 +30,7 @@
 
 .resultSummary {
     cursor: pointer;
+    border-bottom: 1px solid lightgray !important;
 }
 
 .results {
