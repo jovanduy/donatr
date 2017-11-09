@@ -53,5 +53,13 @@ For example, many components (such as Buttons, etc) have an `onClick` prop. What
 
 ### Bootstrap
 Google react bootstrap and then you will find their website where it has a bunch of different example components and examples of how to use them all. That's what I used! 
+https://react-bootstrap.github.io/components.html
+
+I used a bunch of things from bootstrap. At the top of every file it'll say something like
+``` Javascript
+import { Button, FormGroup } from 'react-bootstrap';
+```
+That means that react-bootstrap has built-in Button and FormGroup components that I can just use like regular components.
+See their website for all of their components and how to use them all (there are tons of examples, and I just compied their examples).
 
 

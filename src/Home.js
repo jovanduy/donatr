@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// this component basically just renders the home page text
 class Home extends Component {
     render() {
         return (

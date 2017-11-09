@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+// displays the header that appears on every page
+// including the DONATR button/text
+// and also the Login/Profile icon depending on whether the user is logged in
 class Header extends Component {
     render() {
         return (

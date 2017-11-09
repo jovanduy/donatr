@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Media, Button, Modal } from 'react-bootstrap';
 
+// component for an individual result page
 class Result extends Component {
     constructor() {
         super();

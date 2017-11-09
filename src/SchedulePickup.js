@@ -26,19 +26,24 @@ class SchedulePickup extends Component {
         };
     }
 
+    // callback to show the modal dialog
     showModal() {
         this.setState({modal: true});
     }
 
+    // callback to close the modal dialog
+    // called when the cancel button of the dialog is pressed
     closeModal() {
         this.setState({modal: false});
     }
 
+    // callback for when user presses the "use other kind of pickup" button
+    // in order to toggle the type of pickup (employee/center vs. volunteer)
     togglePickup() {
         this.props.togglePickup();
     }
 
-
+    // callback for when user presses the "back" button
     handleBackClick() {
         this.props.goBack();
     }
