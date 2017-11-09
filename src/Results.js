@@ -13,7 +13,9 @@ class Results extends Component {
             return (
                 <Media className="resultSummary" onClick={() => this.handleSelection(data)}>
                     <Media.Left>
-                        <div style={{width: "100px", height: "100px", backgroundColor: "gray", borderRadius: "50px"}}></div>
+                        <div style={{width: "100px", height: "100px", backgroundColor: "gray", borderRadius: "50px", textAlign:"center"}}>
+                            <span style={{lineHeight:"100px"}}>Logo</span>
+                        </div>
                     </Media.Left>
                     <Media.Body>
                         <Media.Heading>

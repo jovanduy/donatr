@@ -50,7 +50,9 @@ class Result extends Component {
                 <Button className="back" bsStyle="link" onClick={this.handleBackClick}>{"< Results"}</Button>
                 <Media>
                     <Media.Left>
-                        <div style={{width: "100px", height: "100px", backgroundColor:"gray", borderRadius: "50px"}}></div>
+                        <div style={{width: "100px", height: "100px", backgroundColor:"gray", borderRadius: "50px", textAlign: "center"}}>
+                            <span style={{lineHeight: "100px"}}>Logo</span>
+                        </div>
                     </Media.Left>
                     <Media.Body>
                         <Media.Heading>
@@ -61,8 +63,12 @@ class Result extends Component {
                         <p className="address">{this.props.data.address}</p>
                     </Media.Body>
                 </Media>
-                <div style={{width: "40%", paddingTop: "30%", margin: "5px", display: "inline-block", backgroundColor:"gray"}}></div>
-                <div style={{width: "40%", paddingTop: "30%", margin: "5px", display: "inline-block", backgroundColor:"gray"}}></div>
+                <div style={{width: "40%", paddingTop: "30%", margin: "5px", display: "inline-block", backgroundColor:"gray", textAlign: "center"}}>
+                    <span>Pic</span>
+                </div>
+                <div style={{width: "40%", paddingTop: "30%", margin: "5px", display: "inline-block", backgroundColor:"gray", textAlign: "center"}}>
+                    <span>Map</span>
+                </div>
                 <p><span className="accept">accepts: </span><span>{this.props.data.accepts}</span></p>
                 <p><span className="accept">doesn't accept: </span><span>{this.props.data.no}</span></p>
                 <Button bsStyle="primary" onClick={this.handleRequestPickup}>schedule pickup</Button>
