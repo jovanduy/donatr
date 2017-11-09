@@ -43,6 +43,7 @@ class App extends Component {
         };
     }
 
+    // hard coded results
     getResults() {
         return [
             {
@@ -88,6 +89,9 @@ class App extends Component {
         ];
     }
 
+    // callback that happens when the DONATR is clicked
+    // in order to set this.state.currentPage to home
+    // and to clear the search term
     clickHome() {
         this.setState({
             search: '',
@@ -95,6 +99,13 @@ class App extends Component {
         });
     }
 
+    // callback to set this.state.currentPage to the
+    // login page AND also to keep track of what the previous
+    // page was before you were taken to the login page
+    // so that after logging in you can be taken back to that
+    // previous page :)
+    // used both when you click on the Login button in the header
+    // and when you try to schedule a pickup but are not logged in
     clickLogin() {
         this.setState((prevState, props) => {
             return {
@@ -104,6 +115,8 @@ class App extends Component {
         });
     }
 
+    // callback to take you to the profile page
+    // called when you click on the profile icon in the header
     clickProfile() {
         this.setState((prevState, props) => {
             return {
@@ -113,6 +126,12 @@ class App extends Component {
         });
     }
 
+    // callback for what happens when the user logs in
+    // sets this.state.loggedIn to true (so that it will display
+    // the profile icon instead of Login in the header)
+    // and also keeps track of the user's username so that
+    // it can be displayed on the profile page
+    // also sets the current page to whatever the previous page was!
     handleLogin(name) {
         this.setState((prevState, props) => {
             return {
@@ -123,6 +142,8 @@ class App extends Component {
         });
     }
 
+    // callback for when you logout
+    // also clears the stored username
     handleLogout() {
         this.setState((prevState, props) => {
             return {
@@ -133,6 +154,10 @@ class App extends Component {
         });
     }
 
+    // this is the callback for what should happen when
+    // the user types into the search bar
+    // if the search term is empty, it sets the current page to the home page
+    // if it's not empty, sets the current page to the results page
     handleSearchChange(e) {
         // on mobile, when you click on the search bar it scrolls down,
         // so this is to prevent that
@@ -152,18 +177,27 @@ class App extends Component {
         }
     }
 
+    // callback for when the user presses the "back" button
+    // on the individual Result page to take them back to the
+    // search results page
     handleBackToResults() {
         this.setState({
             currentPage: pages.results
         });
     }
 
+    // callback for when the user is on the schedule pickup
+    // page and presses the back button to take them back to the
+    // individual search result page
     handleBackToResult() {
         this.setState({
             currentPage: pages.result
         });
     }
 
+    // callback for when the user clicks a result on the search results
+    // page. This is used to store what result they clicked on and also
+    // to change the current page to the individual result page
     handleResultSelection(result) {
         this.setState({
             currentPage: pages.result,
@@ -171,6 +205,8 @@ class App extends Component {
         });
     }
 
+    // callback to set whether or not the user is scheduling a pickup
+    // through the center or through volunteer
     centerPickupChosen(isCenter) {
         this.setState({
             currentPage: pages.pickup,
@@ -178,6 +214,8 @@ class App extends Component {
         });
     }
 
+    // callback to change if the pickup is through the center or through 
+    // a volunteer by setting it to the opposite of whatever it previously was
     handleChangeCenter() {
         this.setState((prevState, props) => {
             return {
