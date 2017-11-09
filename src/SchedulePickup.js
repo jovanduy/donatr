@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Breadcrumb, Button, ControlLabel, FormGroup, FormControl, FieldGroup, ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const employeeText = "An employee of the donation center will meet you at the specified location to pickup your items and bring them to the center.";
 const volunteerText = "A volunteer, who is unafilliated with the donation center or Donatr, but is just another user of Donatr, will meet you at the specified location to pickup your items and bring them to the center.";
@@ -7,6 +10,8 @@ const volunteerText = "A volunteer, who is unafilliated with the donation center
 const employeeItem = "Please leave enough detail so the employee is prepared!";
 const volunteerItem = "Please leave enough detail so the volunteer is prepared!";
 
+
+BigCalendar.momentLocalizer(moment);
 class SchedulePickup extends Component {
 
     constructor() {
@@ -63,6 +68,13 @@ class SchedulePickup extends Component {
                         />
                     </FormGroup>
                 </form>
+                <BigCalendar
+                    events={[]}
+                    view="week"
+                    selectable={true}
+                    startAccessor='startDate'
+                    endAccessor='endDate'
+                />
                 <Button bsStyle="primary" className="pickup-submit" onClick={this.showModal}>Submit</Button>
                 <Modal show={this.state.modal} onHide={this.closeModal}>
                     <Modal.Header>
