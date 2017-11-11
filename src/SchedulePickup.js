@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Breadcrumb, Button, ControlLabel, FormGroup, FormControl, FieldGroup, ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
+import { Breadcrumb, Button, ControlLabel, FormGroup, FormControl, FieldGroup, ListGroup, ListGroupItem, Modal, Label } from 'react-bootstrap';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -20,15 +20,17 @@ class SchedulePickup extends Component {
         this.handleBackClick = this.handleBackClick.bind(this);
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.confirmPickup = this.confirmPickup.bind(this);
         this.state = {
             modal: false,
-            date: null
+            date: null,
+            labelStyle: {display: "none"}
         };
     }
 
     // callback to show the modal dialog
     showModal() {
-        this.setState({modal: true});
+        this.setState({modal: true, labelStyle: {display: "none"}});
     }
 
     // callback to close the modal dialog
@@ -40,7 +42,14 @@ class SchedulePickup extends Component {
     // callback for when user presses the "use other kind of pickup" button
     // in order to toggle the type of pickup (employee/center vs. volunteer)
     togglePickup() {
+        this.setState({labelStyle: {display: "none"}});
         this.props.togglePickup();
+    }
+
+    // callback for when the user clicks confirm in the modal popup
+    confirmPickup() {
+        this.closeModal();
+        this.setState({labelStyle: {display: "block", textAlign: 'center', margin: 'auto', display: 'table'}});
     }
 
     // callback for when user presses the "back" button
@@ -51,7 +60,8 @@ class SchedulePickup extends Component {
     render() {
         return (
             <div className="schedule-pickup">
-                <Button className="back" bsStyle="link" onClick={this.handleBackClick}>{"< Result"}</Button>
+                <h3 style={this.state.labelStyle}><Label bsStyle="success">Successfully scheduled pickup!</Label></h3>
+                <Button className="back" bsStyle="link" onClick={this.handleBackClick} active={false}>{"< Result"}</Button>
                 <h4>{this.props.title}</h4>
                 <p className="pickup-summary">{this.props.center ? employeeText : volunteerText}</p>
                 <Button bsStyle="primary" onClick={this.togglePickup}>{"use" + (this.props.center ? " volunteer" : " employee") + " pickup instead" }</Button>
@@ -103,7 +113,7 @@ class SchedulePickup extends Component {
                                 <p className="pickup-items-summary">Sunday, October 29, 2017</p>
                                 <p className="pickup-items-summary">12PM - 2PM</p>
                             </ListGroupItem>
-                            <ListGroupItem bsStyle="info">
+                            <ListGroupItem bsStyle="info" onClick={this.confirmPickup}>
                                 Confirm
                             </ListGroupItem>
                             <ListGroupItem bsStyle="danger" onClick={this.closeModal}>

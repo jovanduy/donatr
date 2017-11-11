@@ -12,6 +12,8 @@
     outline: 0px;
 }
 
+button:focus {outline:0 !important;}
+
 /*
  * font size on all input fields needs to be 16px so mobile browsers
  * do not zoom in when they are clicked on
@@ -131,7 +133,6 @@ textarea {
     margin-bottom: 0px;
 }
 
-button:focus {outline:0;}
 
 .pickup-summary {
     color: gray;
