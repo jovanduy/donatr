@@ -22,8 +22,8 @@ class Results extends Component {
                             <span className="res-title">{data.title}</span>
                             <span className="dist">{data.distance}</span>
                         </Media.Heading>
-                        <p><span bsClass="accept">accepts: </span><span>{data.accepts}</span></p>
-                        <p><span bsClass="accept" style={{fontWeight:"700"}}>doesn't accept: </span><span>{data.no}</span></p>
+                        <p><span bsClass="accept" style={{fontWeight: "700"}}>accepts: </span><span>{data.accepts}</span></p>
+                        <p><span bsClass="accept" style={{fontWeight: "700"}}>doesn't accept: </span><span>{data.no}</span></p>
                         <p className="address">{data.address}</p>
                     </Media.Body>
                 </Media>

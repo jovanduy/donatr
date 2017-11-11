@@ -63,11 +63,23 @@ class Result extends Component {
                         <p className="address">{this.props.data.address}</p>
                     </Media.Body>
                 </Media>
-                <div style={{width: "40%", paddingTop: "30%", margin: "5px", display: "inline-block", backgroundColor:"gray", textAlign: "center"}}>
-                    <span>Pic</span>
+                <div>
+                    <div style={{width: "43%", paddingTop: "32.25%", margin: "5px", display: "inline-block", backgroundColor:"gray", textAlign: "center"}}>
+                        <span>Pic</span>
+                    </div>
+                    <div style={{width: "43%", paddingTop: "32.25%", margin: "5px", display: "inline-block", backgroundColor:"gray", textAlign: "center"}}>
+                        <span>Map</span>
+                    </div>
                 </div>
-                <div style={{width: "40%", paddingTop: "30%", margin: "5px", display: "inline-block", backgroundColor:"gray", textAlign: "center"}}>
-                    <span>Map</span>
+                <div className="hours">
+                    <p className="bold">Hours:</p>
+                    <p>S 7:00am - 5:00pm</p>
+                    <p>M 7:00am - 5:00pm</p>
+                    <p>T 7:00am - 5:00pm</p>
+                    <p>W 7:00am - 5:00pm</p>
+                    <p>T 7:00am - 5:00pm</p>
+                    <p>F 7:00am - 5:00pm</p>
+                    <p>S 7:00am - 5:00pm</p>
                 </div>
                 <p><span className="accept">accepts: </span><span>{this.props.data.accepts}</span></p>
                 <p><span className="accept">doesn't accept: </span><span>{this.props.data.no}</span></p>

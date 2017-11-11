@@ -89,6 +89,16 @@ textarea {
     color: gray;
 }
 
+.hours {
+    float: right;
+    line-height: .5em;
+    margin-right: 14%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 .login-form-div {
     display: block;
     text-align: center;
