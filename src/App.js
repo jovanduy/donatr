@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Typist from 'react-typist';
-import { FormGroup, FormControl,Button } from 'react-bootstrap';
+import { ControlLabel, FormGroup, FormControl, Button } from 'react-bootstrap';
 import Header from './Header';
 import Home from './Home';
 import Results from './Results';
@@ -38,6 +38,8 @@ class App extends Component {
             currentPage: pages.home,
             previousPage: pages.home,
             search: '',
+            where: '',
+            support: '',
             result: null,
             loggedIn: false,
             username: '',
@@ -175,9 +177,58 @@ class App extends Component {
                 currentPage: pages.results
             });
         } else {
+			const page = (this.state.where || this.state.support) ? pages.results : pages.home;
             this.setState({
                 search: search,
-                currentPage: pages.home
+                currentPage: page
+            });
+        }
+    }
+
+    // this is the callback for what should happen when
+    // the user types into the where search bar
+    // if the search term is empty, it sets the current page to the home page
+    // if it's not empty, sets the current page to the results page
+    handleWhereSearchChange = (e) => {
+        // on mobile, when you click on the search bar it scrolls down,
+        // so this is to prevent that
+        document.body.scrollTop = 0; // For Chrome, Safari and Opera 
+        document.documentElement.scrollTop = 0; 
+        const search = e.target.value;
+        if (search) {
+            this.setState({
+                where: search,
+                currentPage: pages.results
+            });
+        } else {
+			const page = (this.state.search || this.state.support) ? pages.results : pages.home;
+            this.setState({
+                where: search,
+                currentPage: page
+            });
+        }
+    }
+
+    // this is the callback for what should happen when
+    // the user types into the support search bar
+    // if the search term is empty, it sets the current page to the home page
+    // if it's not empty, sets the current page to the results page
+    handleSupportSearchChange = (e) => {
+        // on mobile, when you click on the search bar it scrolls down,
+        // so this is to prevent that
+        document.body.scrollTop = 0; // For Chrome, Safari and Opera 
+        document.documentElement.scrollTop = 0; 
+        const search = e.target.value;
+        if (search) {
+            this.setState({
+                support: search,
+                currentPage: pages.results
+            });
+        } else {
+			const page = (this.state.search || this.state.where) ? pages.results : pages.home;
+            this.setState({
+                support: search,
+                currentPage: page
             });
         }
     }
@@ -351,7 +402,43 @@ class App extends Component {
 
             return (<h1>ghost text</h1>);
         } else if (this.state.v === 3) {
-            return (<h1>mad libs</h1>);
+                  return (
+           <div className="App" tabindex="0">
+        <Header loggedIn={this.state.loggedIn} goHome={this.clickHome} goLogin={this.clickLogin} goProfile={this.clickProfile}/>
+        { this.state.currentPage === pages.home ? <Home /> : null }
+        {
+            (this.state.currentPage === pages.home) || (this.state.currentPage === pages.results)  ?
+            <form>
+                <FormGroup controlId="searchBar">
+					<ControlLabel>What</ControlLabel>
+                    <FormControl 
+                        type="text"
+                        value={this.state.search}
+                        placeholder="ex. chair, old couch, clothes"
+                        onChange={this.handleSearchChange}
+                    />
+					<ControlLabel>Where</ControlLabel>
+                    <FormControl 
+                        type="text"
+                        value={this.state.where}
+                        placeholder="ex. Boston, near me, Goodwill"
+                        onChange={this.handleWhereSearchChange}
+                    />
+					<ControlLabel>To support</ControlLabel>
+                    <FormControl 
+                        type="text"
+                        value={this.state.support}
+                        placeholder="ex. AIDS research, epilepsy, animals"
+                        onChange={this.handleSupportSearchChange}
+                    />
+
+                </FormGroup>
+            </form>
+                : null
+        }
+        { this.getContents() }
+      </div>
+ );      
         } else {
             return (
                 <div className="version-selector">
