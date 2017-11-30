@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl } from 'react-bootstrap';
+import Typist from 'react-typist';
+import { FormGroup, FormControl,Button } from 'react-bootstrap';
 import Header from './Header';
 import Home from './Home';
 import Results from './Results';
@@ -7,6 +8,7 @@ import Result from './Result';
 import Login from './Login';
 import Profile from './Profile';
 import SchedulePickup from './SchedulePickup';
+import SelectVersion from './SelectVersion';
 import './App.css';
 
 const pages = {
@@ -39,7 +41,10 @@ class App extends Component {
             result: null,
             loggedIn: false,
             username: '',
-            center: true
+            center: true,
+            version: 0,
+            v: 0,
+            showGhost: true
         };
     }
 
@@ -258,16 +263,32 @@ class App extends Component {
         }
     }
 
-  render() {
-    // This is the main page! 
-    // The header is always there
-    // The first two { } sets are to control the logic of keeping the
-    // same search bar on both the home page and the search results page
-    // The third { } where it says { this.getContents() } refers to the 
-    // getContents function above. Basically what that does is based on 
-    // which page should be displayed, it will display that component!
-    return (
-      <div className="App" tabindex="0">
+    setV1 = () => {
+        this.setState({
+            v: 1
+        });
+    }
+
+    setV2 = () => {
+        this.setState({
+            v: 2
+        });
+    }
+
+    setV = () => {
+        this.setState({
+            v: 3
+        });
+    }
+
+    hideGhost = () => {
+        this.setState({showGhost: false});
+    }
+
+    createVersionSelector = () => {
+        if (this.state.v === 1) {
+            return (
+           <div className="App" tabindex="0">
         <Header loggedIn={this.state.loggedIn} goHome={this.clickHome} goLogin={this.clickLogin} goProfile={this.clickProfile}/>
         { this.state.currentPage === pages.home ? <Home /> : null }
         {
@@ -286,6 +307,81 @@ class App extends Component {
         }
         { this.getContents() }
       </div>
+ );      
+        } else if (this.state.v === 2) {
+            const typistClass = this.state.showGhost ? 'show' : 'hide';
+        return (
+            <div className="App" tabindex="0">
+            <Header loggedIn={this.state.loggedIn} goHome={this.clickHome} goLogin={this.clickLogin} goProfile={this.clickProfile}/>
+            { this.state.currentPage === pages.home ? <Home /> : null }
+            {
+                (this.state.currentPage === pages.home) || (this.state.currentPage === pages.results)  ?
+                <div className="search-container" onClick={this.hideGhost}>
+                <Typist className={typistClass} >
+                    <span className="typist">centers near Boston, MA</span>
+                    <Typist.Backspace count={23} delay={200} />
+                    <span className="typist">furniture</span>
+                    <Typist.Backspace count={9} delay={200} />
+                    <span className="typist">clothes</span>
+                    <Typist.Backspace count={7} delay={200} />
+                    <span className="typist">couch</span>
+                    <Typist.Backspace count={5} delay={200} />
+                    <span className="typist">animal shelters</span>
+                    <Typist.Backspace count={15} delay={200} />
+                    <span className="typist">disaster relief</span>
+                    <Typist.Backspace count={15} delay={200} />
+                    <span className="typist">what do you want to search?</span>
+                </Typist>
+                <form className="searchBar">
+                    <FormGroup controlId="searchBar">
+                        <FormControl 
+                            type="text"
+                            value={this.state.search}
+                            placeholder=""
+                            onChange={this.handleSearchChange}
+                        />
+                    </FormGroup>
+                </form>
+                    </div>
+                    : null
+            }
+            { this.getContents() }
+        </div>
+        );      
+
+            return (<h1>ghost text</h1>);
+        } else if (this.state.v === 3) {
+            return (<h1>mad libs</h1>);
+        } else {
+            return (
+                <div className="version-selector">
+                  <Button block bsStyle="default" onClick={this.setV1} >
+                      control
+                  </Button>
+                  <Button block onClick={this.setV2} >
+                      ghost text
+                  </Button>
+                  <Button block onClick={this.setV} >
+                      mad libs
+                  </Button>
+              </div>
+            );
+        }
+    }
+
+  render() {
+    // This is the main page! 
+    // The header is always there
+    // The first two { } sets are to control the logic of keeping the
+    // same search bar on both the home page and the search results page
+    // The third { } where it says { this.getContents() } refers to the 
+    // getContents function above. Basically what that does is based on 
+    // which page should be displayed, it will display that component!
+      //
+    return (
+        <div>
+        {this.createVersionSelector()}
+        </div>
     );
   }
 }

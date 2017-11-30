@@ -6,10 +6,14 @@ class Home extends Component {
         return (
             <div className="home">
                 <p className=" description about">
-                    DONATR connects people who want to donate things to volunteers who deliver donations to local donation centers.
+                    Can’t take your donations to a donation center?
                 </p>
                 <p className="description get-started">
-                    Let's get started!
+                    What do you want to donate? Where? 
+                </p>
+
+                <p className="description get-started">
+DONATR connects donors like you to volunteers who deliver donations to local organizations.
                 </p>
             </div>
         );

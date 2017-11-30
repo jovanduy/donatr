@@ -26,6 +26,36 @@ textarea {
     font-size: 16px !important;
 }
 
+.search-container {
+  position: relative; /* for absolute child element */
+  display: inline-block; /* to take the width of the input */
+  width: 100%;
+}
+
+.hide {
+    display: none;
+}
+.typist {
+  position: absolute; /* to align it to right and positon it over the input */
+  top: 10px;
+  left: 12px;
+}
+.Cursor {
+
+    display: none;
+}
+.typist {
+    position: absolute;
+    color: lightgray;
+    z-index: 2;
+}
+
+.searchBar {
+    top: 0px; left: 0px;
+    z-index: 2;
+    width: 100%;
+}
+
 .header {
   padding-bottom: 20px;
   color: black;
