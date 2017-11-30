@@ -334,6 +334,7 @@ class App extends Component {
 
     hideGhost = () => {
         this.setState({showGhost: false});
+        document.getElementById("searchBar").focus();
     }
 
     createVersionSelector = () => {
@@ -370,17 +371,17 @@ class App extends Component {
                 <div className="search-container" onClick={this.hideGhost}>
                 <Typist className={typistClass} >
                     <span className="typist">centers near Boston, MA</span>
-                    <Typist.Backspace count={23} delay={200} />
+                    <Typist.Backspace count={23} delay={500} />
                     <span className="typist">furniture</span>
-                    <Typist.Backspace count={9} delay={200} />
+                    <Typist.Backspace count={9} delay={500} />
                     <span className="typist">clothes</span>
-                    <Typist.Backspace count={7} delay={200} />
+                    <Typist.Backspace count={7} delay={500} />
                     <span className="typist">couch</span>
-                    <Typist.Backspace count={5} delay={200} />
+                    <Typist.Backspace count={5} delay={500} />
                     <span className="typist">animal shelters</span>
-                    <Typist.Backspace count={15} delay={200} />
+                    <Typist.Backspace count={15} delay={500} />
                     <span className="typist">disaster relief</span>
-                    <Typist.Backspace count={15} delay={200} />
+                    <Typist.Backspace count={15} delay={500} />
                     <span className="typist">what do you want to search?</span>
                 </Typist>
                 <form className="searchBar">
@@ -400,7 +401,6 @@ class App extends Component {
         </div>
         );      
 
-            return (<h1>ghost text</h1>);
         } else if (this.state.v === 3) {
                   return (
            <div className="App" tabindex="0">
@@ -467,7 +467,7 @@ class App extends Component {
       //
     return (
         <div>
-        {this.createVersionSelector()}
+            {this.createVersionSelector()}
         </div>
     );
   }
