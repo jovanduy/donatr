@@ -82,14 +82,29 @@ class SchedulePickup extends Component {
                             placeholder="address"
                         />
                     </FormGroup>
+                    <FormGroup>
+                        <ControlLabel>
+                            Pickup Date
+                        </ControlLabel>
+                        <FormControl
+                            type="date" name="pickup-date"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <ControlLabel>
+                            Pickup Time Range
+                        </ControlLabel>
+                        {'From '}
+                        <FormControl
+                            type="time" name="start-time"
+                        />
+                        {' to '}
+                        <FormControl
+                            type="time" name="start-time"
+                        />
+
+                    </FormGroup>
                 </form>
-                <BigCalendar
-                    events={[]}
-                    selectable={true}
-                    view="week"
-                    startAccessor="startDate"
-                    endAccessor="endDate"
-                />
                 <Button bsStyle="primary" className="pickup-submit" onClick={this.showModal}>Submit</Button>
                 <Modal show={this.state.modal} onHide={this.closeModal}>
                     <Modal.Header>

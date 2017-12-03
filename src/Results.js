@@ -26,6 +26,9 @@ class Results extends Component {
                         <p><span bsClass="accept" style={{fontWeight: "700"}}>doesn't accept: </span><span>{data.no}</span></p>
                         <p className="address">{data.address}</p>
                     </Media.Body>
+                    <Media.Right className="more-info">
+                        More info >
+                    </Media.Right>
                 </Media>
             );
         }.bind(this));

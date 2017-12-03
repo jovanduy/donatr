@@ -88,6 +88,14 @@ textarea {
     border-bottom: 1px solid lightgray !important;
 }
 
+.resultSummary:hover {
+    background-color: lightgray;
+}
+
+.resultSummary .more-info {
+    color: #4e9cbe;
+}
+
 /* the overall scrollable results list */
 .results {
     height: 500px;
