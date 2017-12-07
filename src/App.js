@@ -23,17 +23,6 @@ const pages = {
 class App extends Component {
     constructor() {
         super();
-        this.handleSearchChange = this.handleSearchChange.bind(this);
-        this.clickHome = this.clickHome.bind(this);
-        this.clickLogin = this.clickLogin.bind(this);
-        this.clickProfile = this.clickProfile.bind(this);
-        this.handleResultSelection = this.handleResultSelection.bind(this);
-        this.handleBackToResults = this.handleBackToResults.bind(this);
-        this.handleBackToResult = this.handleBackToResult.bind(this);
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleLogout = this.handleLogout.bind(this);
-        this.centerPickupChosen = this.centerPickupChosen.bind(this);
-        this.handleChangeCenterPickup = this.handleChangeCenterPickup.bind(this);
         this.state = {
             currentPage: pages.home,
             previousPage: pages.home,
@@ -51,7 +40,7 @@ class App extends Component {
     }
 
     // hard coded results
-    getResults() {
+    getResults = () => {
         return [
             {
                 title: 'Goodwill',
@@ -99,7 +88,7 @@ class App extends Component {
     // callback that happens when the DONATR is clicked
     // in order to set this.state.currentPage to home
     // and to clear the search term
-    clickHome() {
+    clickHome = () => {
         this.setState({
             search: '',
             currentPage: pages.home
@@ -113,7 +102,7 @@ class App extends Component {
     // previous page :)
     // used both when you click on the Login button in the header
     // and when you try to schedule a pickup but are not logged in
-    clickLogin() {
+    clickLogin = () => {
         this.setState((prevState, props) => {
             return {
                 currentPage: pages.login,
@@ -124,7 +113,7 @@ class App extends Component {
 
     // callback to take you to the profile page
     // called when you click on the profile icon in the header
-    clickProfile() {
+    clickProfile = () => {
         this.setState((prevState, props) => {
             return {
                 currentPage: pages.profile,
@@ -139,7 +128,7 @@ class App extends Component {
     // and also keeps track of the user's username so that
     // it can be displayed on the profile page
     // also sets the current page to whatever the previous page was!
-    handleLogin(name) {
+    handleLogin = (name) => {
         this.setState((prevState, props) => {
             return {
                 loggedIn: true,
@@ -151,7 +140,7 @@ class App extends Component {
 
     // callback for when you logout
     // also clears the stored username
-    handleLogout() {
+    handleLogout = () => {
         this.setState((prevState, props) => {
             return {
                 loggedIn: false,
@@ -165,7 +154,7 @@ class App extends Component {
     // the user types into the search bar
     // if the search term is empty, it sets the current page to the home page
     // if it's not empty, sets the current page to the results page
-    handleSearchChange(e) {
+    handleSearchChange = (e) => {
         // on mobile, when you click on the search bar it scrolls down,
         // so this is to prevent that
         document.body.scrollTop = 0; // For Chrome, Safari and Opera 
@@ -236,7 +225,7 @@ class App extends Component {
     // callback for when the user presses the "back" button
     // on the individual Result page to take them back to the
     // search results page
-    handleBackToResults() {
+    handleBackToResults = () => {
         this.setState({
             currentPage: pages.results
         });
@@ -245,7 +234,7 @@ class App extends Component {
     // callback for when the user is on the schedule pickup
     // page and presses the back button to take them back to the
     // individual search result page
-    handleBackToResult() {
+    handleBackToResult = () => {
         this.setState({
             currentPage: pages.result
         });
@@ -254,7 +243,7 @@ class App extends Component {
     // callback for when the user clicks a result on the search results
     // page. This is used to store what result they clicked on and also
     // to change the current page to the individual result page
-    handleResultSelection(result) {
+    handleResultSelection = (result) => {
         this.setState({
             currentPage: pages.result,
             result: result
@@ -263,16 +252,15 @@ class App extends Component {
 
     // callback to set whether or not the user is scheduling a pickup
     // through the center or through volunteer
-    centerPickupChosen(pickupStyle) {
+    handleShowSchedulePickup = () => {
         this.setState({
-            currentPage: pages.pickup,
-            pickupStyle: pickupStyle
+            currentPage: pages.pickup
         });
     }
 
     // callback to change if the pickup is through the center or through 
     // a volunteer by setting it to the opposite of whatever it previously was
-    handleChangeCenterPickup(val) {
+    handleChangeCenterPickup = (val) => {
         this.setState((prevState, props) => {
             return {
                 pickupStyle: val
@@ -280,7 +268,7 @@ class App extends Component {
         });
     }
 
-    getContents() {
+    getContents = () => {
         // control the logic for which page to render under the header
         switch(this.state.currentPage) {
             case pages.home:
@@ -293,7 +281,7 @@ class App extends Component {
                 );
             case pages.result:
                 return (
-                    <Result data={this.state.result} goBack={this.handleBackToResults} pickup={this.centerPickupChosen} loggedIn={this.state.loggedIn} goLogin={this.clickLogin} />
+                    <Result data={this.state.result} goBack={this.handleBackToResults} pickup={this.handleShowSchedulePickup} loggedIn={this.state.loggedIn} goLogin={this.clickLogin} />
                 );
             case pages.login:
                 return (
@@ -317,87 +305,6 @@ class App extends Component {
     hideGhost = () => {
         this.setState({showGhost: false});
         document.getElementById("searchBar").focus();
-    }
-
-    createVersionSelector = () => {
-        if (this.state.v === 1) {
-            return (
-           <div className="App" tabindex="0">
-        <Header loggedIn={this.state.loggedIn} goHome={this.clickHome} goLogin={this.clickLogin} goProfile={this.clickProfile}/>
-        { this.state.currentPage === pages.home ? <Home /> : null }
-        {
-            (this.state.currentPage === pages.home) || (this.state.currentPage === pages.results)  ?
-            <form>
-                <FormGroup controlId="searchBar">
-                    <FormControl 
-                        type="text"
-                        value={this.state.search}
-                        placeholder="ex. chair, Boston, clothes"
-                        onChange={this.handleSearchChange}
-                    />
-                </FormGroup>
-            </form>
-                : null
-        }
-        { this.getContents() }
-      </div>
- );      
-        } else if (this.state.v === 2) {
-               
-
-        } else if (this.state.v === 3) {
-                  return (
-           <div className="App" tabindex="0">
-        <Header loggedIn={this.state.loggedIn} goHome={this.clickHome} goLogin={this.clickLogin} goProfile={this.clickProfile}/>
-        { this.state.currentPage === pages.home ? <Home /> : null }
-        {
-            (this.state.currentPage === pages.home) || (this.state.currentPage === pages.results)  ?
-            <form>
-                <FormGroup controlId="searchBar">
-					<ControlLabel>What</ControlLabel>
-                    <FormControl 
-                        type="text"
-                        value={this.state.search}
-                        placeholder="ex. chair, old couch, clothes"
-                        onChange={this.handleSearchChange}
-                    />
-					<ControlLabel>Where</ControlLabel>
-                    <FormControl 
-                        type="text"
-                        value={this.state.where}
-                        placeholder="ex. Boston, near me, Goodwill"
-                        onChange={this.handleWhereSearchChange}
-                    />
-					<ControlLabel>To support</ControlLabel>
-                    <FormControl 
-                        type="text"
-                        value={this.state.support}
-                        placeholder="ex. AIDS research, epilepsy, animals"
-                        onChange={this.handleSupportSearchChange}
-                    />
-
-                </FormGroup>
-            </form>
-                : null
-        }
-        { this.getContents() }
-      </div>
- );      
-        } else {
-            return (
-                <div className="version-selector">
-                  <Button block bsStyle="default" onClick={this.setV1} >
-                      control
-                  </Button>
-                  <Button block onClick={this.setV2} >
-                      ghost text
-                  </Button>
-                  <Button block onClick={this.setV} >
-                      mad libs
-                  </Button>
-              </div>
-            );
-        }
     }
 
   render() {

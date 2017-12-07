@@ -63,6 +63,7 @@ class SchedulePickup extends Component {
                     <ToggleButtonGroup
                         type="radio" 
                         name="options"
+                        defaultValue={0}
                         value={this.props.pickupStyle}
                         onChange={this.togglePickup}
                     >

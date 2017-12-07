@@ -12,7 +12,7 @@ class Result extends Component {
 
     handleRequestPickup = () => {
         if (this.props.loggedIn) {
-            this.handleVolunteerPickup();
+            this.props.pickup();
         } else {
             this.props.goLogin();
         }
@@ -20,14 +20,6 @@ class Result extends Component {
 
     handleBackClick = () => {
         this.props.goBack();
-    }
-
-    handleVolunteerPickup = () => {
-        this.props.pickup(false);
-    }
-    
-    handleCenterPickup = () => {
-        this.props.pickup(true);
     }
 
     render() {
