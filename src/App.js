@@ -33,7 +33,7 @@ class App extends Component {
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
         this.centerPickupChosen = this.centerPickupChosen.bind(this);
-        this.handleChangeCenter = this.handleChangeCenter.bind(this);
+        this.handleChangeCenterPickup = this.handleChangeCenterPickup.bind(this);
         this.state = {
             currentPage: pages.home,
             previousPage: pages.home,
@@ -43,7 +43,7 @@ class App extends Component {
             result: null,
             loggedIn: false,
             username: '',
-            center: true,
+            pickupStyle: 0, // 0 is center employee, 1 is volunteer
             version: 0,
             v: 0,
             showGhost: true
@@ -263,19 +263,19 @@ class App extends Component {
 
     // callback to set whether or not the user is scheduling a pickup
     // through the center or through volunteer
-    centerPickupChosen(isCenter) {
+    centerPickupChosen(pickupStyle) {
         this.setState({
             currentPage: pages.pickup,
-            center: isCenter
+            pickupStyle: pickupStyle
         });
     }
 
     // callback to change if the pickup is through the center or through 
     // a volunteer by setting it to the opposite of whatever it previously was
-    handleChangeCenter() {
+    handleChangeCenterPickup(val) {
         this.setState((prevState, props) => {
             return {
-                center: !prevState.center
+                pickupStyle: val
             };
         });
     }
@@ -305,31 +305,13 @@ class App extends Component {
                 );
             case pages.pickup:
                 return (
-                    <SchedulePickup title={this.state.result.title + (this.state.center ? " employee" : " volunteer") + " pickup"} center={this.state.center} togglePickup={this.handleChangeCenter} goBack={this.handleBackToResult} />
+                    <SchedulePickup title={this.state.result.title + " pickup"} pickupStyle={this.state.pickupStyle} togglePickup={this.handleChangeCenterPickup} goBack={this.handleBackToResult} />
                 );
             default:
                 return (
                     null
                 );
         }
-    }
-
-    setV1 = () => {
-        this.setState({
-            v: 1
-        });
-    }
-
-    setV2 = () => {
-        this.setState({
-            v: 2
-        });
-    }
-
-    setV = () => {
-        this.setState({
-            v: 3
-        });
     }
 
     hideGhost = () => {
@@ -361,45 +343,7 @@ class App extends Component {
       </div>
  );      
         } else if (this.state.v === 2) {
-            const typistClass = this.state.showGhost ? 'show' : 'hide';
-        return (
-            <div className="App" tabindex="0">
-            <Header loggedIn={this.state.loggedIn} goHome={this.clickHome} goLogin={this.clickLogin} goProfile={this.clickProfile}/>
-            { this.state.currentPage === pages.home ? <Home /> : null }
-            {
-                (this.state.currentPage === pages.home) || (this.state.currentPage === pages.results)  ?
-                <div className="search-container" onClick={this.hideGhost}>
-                <Typist className={typistClass} >
-                    <span className="typist">centers near Boston, MA</span>
-                    <Typist.Backspace count={23} delay={500} />
-                    <span className="typist">furniture</span>
-                    <Typist.Backspace count={9} delay={500} />
-                    <span className="typist">clothes</span>
-                    <Typist.Backspace count={7} delay={500} />
-                    <span className="typist">couch</span>
-                    <Typist.Backspace count={5} delay={500} />
-                    <span className="typist">animal shelters</span>
-                    <Typist.Backspace count={15} delay={500} />
-                    <span className="typist">disaster relief</span>
-                    <Typist.Backspace count={15} delay={500} />
-                    <span className="typist">what do you want to search?</span>
-                </Typist>
-                <form className="searchBar">
-                    <FormGroup controlId="searchBar">
-                        <FormControl 
-                            type="text"
-                            value={this.state.search}
-                            placeholder=""
-                            onChange={this.handleSearchChange}
-                        />
-                    </FormGroup>
-                </form>
-                    </div>
-                    : null
-            }
-            { this.getContents() }
-        </div>
-        );      
+               
 
         } else if (this.state.v === 3) {
                   return (
@@ -465,9 +409,43 @@ class App extends Component {
     // getContents function above. Basically what that does is based on 
     // which page should be displayed, it will display that component!
       //
+        const typistClass = this.state.showGhost ? 'show' : 'hide';
     return (
-        <div>
-            {this.createVersionSelector()}
+        <div className="App" tabindex="0">
+            <Header loggedIn={this.state.loggedIn} goHome={this.clickHome} goLogin={this.clickLogin} goProfile={this.clickProfile}/>
+            { this.state.currentPage === pages.home ? <Home /> : null }
+            {
+                (this.state.currentPage === pages.home) || (this.state.currentPage === pages.results)  ?
+                <div className="search-container" onClick={this.hideGhost}>
+                    <Typist className={typistClass} >
+                        <span className="typist">centers near Boston, MA</span>
+                        <Typist.Backspace count={23} delay={500} />
+                        <span className="typist">furniture</span>
+                        <Typist.Backspace count={9} delay={500} />
+                        <span className="typist">clothes</span>
+                        <Typist.Backspace count={7} delay={500} />
+                        <span className="typist">couch</span>
+                        <Typist.Backspace count={5} delay={500} />
+                        <span className="typist">animal shelters</span>
+                        <Typist.Backspace count={15} delay={500} />
+                        <span className="typist">disaster relief</span>
+                        <Typist.Backspace count={15} delay={500} />
+                        <span className="typist">what do you want to search?</span>
+                    </Typist>
+                    <form className="searchBar">
+                        <FormGroup controlId="searchBar">
+                            <FormControl 
+                                type="text"
+                                value={this.state.search}
+                                placeholder=""
+                                onChange={this.handleSearchChange}
+                            />
+                        </FormGroup>
+                    </form>
+                </div>
+                : null
+            }
+            { this.getContents() }
         </div>
     );
   }

@@ -1,46 +1,32 @@
 import React, { Component } from 'react';
-import { Media, Button, Modal } from 'react-bootstrap';
+import { Media, Button, Modal, Well, Panel } from 'react-bootstrap';
 
 // component for an individual result page
 class Result extends Component {
     constructor() {
         super();
-        this.showModal = this.showModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-        this.handleBackClick = this.handleBackClick.bind(this);
-        this.handleVolunteerPickup = this.handleVolunteerPickup.bind(this);
-        this.handleCenterPickup = this.handleCenterPickup.bind(this);
-        this.handleRequestPickup = this.handleRequestPickup.bind(this);
         this.state = {
             modal: false
         };
     }
 
-    handleRequestPickup() {
+    handleRequestPickup = () => {
         if (this.props.loggedIn) {
-            this.showModal();
+            this.handleVolunteerPickup();
         } else {
             this.props.goLogin();
         }
     }
 
-    showModal() {
-        this.setState({modal: true});
-    }
-
-    closeModal() {
-        this.setState({modal: false});
-    }
-
-    handleBackClick() {
+    handleBackClick = () => {
         this.props.goBack();
     }
 
-    handleVolunteerPickup() {
+    handleVolunteerPickup = () => {
         this.props.pickup(false);
     }
     
-    handleCenterPickup() {
+    handleCenterPickup = () => {
         this.props.pickup(true);
     }
 
@@ -63,7 +49,7 @@ class Result extends Component {
                         <p className="address">{this.props.data.address}</p>
                     </Media.Body>
                 </Media>
-                <div>
+                <div className="result-pictures">
                     <div style={{width: "43%", paddingTop: "32.25%", margin: "5px", display: "inline-block", backgroundColor:"gray", textAlign: "center"}}>
                         <span>Pic</span>
                     </div>
@@ -83,19 +69,12 @@ class Result extends Component {
                 </div>
                 <p><span className="accept">accepts: </span><span>{this.props.data.accepts}</span></p>
                 <p><span className="accept">doesn't accept: </span><span>{this.props.data.no}</span></p>
+                { !this.props.loggedIn &&
+                    <Panel header={'Stop!'} bsStyle="danger">
+                        You have to be logged in to schedule a pickup! Clicking this schedule button will prompt you to login and return you to this page.
+                    </Panel>
+                }
                 <Button bsStyle="primary" onClick={this.handleRequestPickup}>schedule pickup</Button>
-                <Modal show={this.state.modal} onHide={this.closeModal}>
-                    <Modal.Header>
-                        <Modal.Title>Schedule Pick-up</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Button block onClick={this.handleVolunteerPickup}>Volunteer Pick-up</Button>
-                        <Button block onClick={this.handleCenterPickup}>Center Pick-up</Button>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button block onClick={this.closeModal}>Close</Button>
-                    </Modal.Footer>
-                </Modal>
             </div>
         );
     }

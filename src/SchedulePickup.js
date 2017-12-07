@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import { Breadcrumb, Button, ControlLabel, FormGroup, FormControl, FieldGroup, ListGroup, ListGroupItem, Modal, Label } from 'react-bootstrap';
-import BigCalendar from 'react-big-calendar';
-import moment from 'moment';
+import { Breadcrumb, Button, ControlLabel, FormGroup, FormControl, FieldGroup, ListGroup, ListGroupItem, Modal, Label, ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const employeeText = "An employee of the donation center will meet you at the specified location to pickup your items and bring them to the center.";
 const volunteerText = "A volunteer, who is unafilliated with the donation center or Donatr, but is just another user of Donatr, will meet you at the specified location to pickup your items and bring them to the center.";
 
-const employeeItem = "Please leave enough detail so the employee is prepared!";
-const volunteerItem = "Please leave enough detail so the volunteer is prepared!";
-
-
-BigCalendar.momentLocalizer(moment);
 class SchedulePickup extends Component {
 
     constructor() {
@@ -41,9 +34,9 @@ class SchedulePickup extends Component {
 
     // callback for when user presses the "use other kind of pickup" button
     // in order to toggle the type of pickup (employee/center vs. volunteer)
-    togglePickup() {
+    togglePickup(val) {
         this.setState({labelStyle: {display: "none"}});
-        this.props.togglePickup();
+        this.props.togglePickup(val);
     }
 
     // callback for when the user clicks confirm in the modal popup
@@ -62,14 +55,28 @@ class SchedulePickup extends Component {
             <div className="schedule-pickup">
                 <h3 style={this.state.labelStyle}><Label bsStyle="success">Successfully scheduled pickup!</Label></h3>
                 <Button className="back" bsStyle="link" onClick={this.handleBackClick} active={false}>{"< Result"}</Button>
-                <h4>{this.props.title}</h4>
-                <p className="pickup-summary">{this.props.center ? employeeText : volunteerText}</p>
-                <Button bsStyle="primary" onClick={this.togglePickup}>{"use" + (this.props.center ? " volunteer" : " employee") + " pickup instead" }</Button>
+                <h3>{this.props.title}</h3>
+                <ControlLabel>Who do you want to pickup your items?</ControlLabel>
+                <p className="pickup-summary">{this.props.pickupStyle ? employeeText : volunteerText}</p>
+                <p className="pickup-summary">{this.props.pickupStyle ? volunteerText : employeeText }</p>
+                <ButtonToolbar>
+                    <ToggleButtonGroup
+                        type="radio" 
+                        name="options"
+                        value={this.props.pickupStyle}
+                        onChange={this.togglePickup}
+                    >
+                        <ToggleButton value={0}>
+                            center
+                        </ToggleButton>
+                        <ToggleButton value={1}>volunteer</ToggleButton>
+                    </ToggleButtonGroup>
+                </ButtonToolbar>
                 <form>
                     <FormGroup controlId="formControlsTextarea">
                         <ControlLabel>
                             <p className="pickup-items">Items to be picked up:</p>
-                            <p className="pickup-items-summary">{this.props.center ? employeeItem : volunteerItem }</p>
+                            <p className="pickup-items-summary">Please leave enough detail so the person picking up your items is prepared!</p>
                         </ControlLabel>
                         <FormControl componentClass="textarea" />
                     </FormGroup>
@@ -108,8 +115,8 @@ class SchedulePickup extends Component {
                 <Button bsStyle="primary" className="pickup-submit" onClick={this.showModal}>Submit</Button>
                 <Modal show={this.state.modal} onHide={this.closeModal}>
                     <Modal.Header>
-                        <Modal.Title>Confirm into</Modal.Title>
-                        <p>{(this.props.center ? "Employee" : "Volunteer") + " pick-up"}</p>
+                        <Modal.Title>Confirm info</Modal.Title>
+                        <p>{(this.props.pickupStyle ? "Volunteer" : "Center employee") + " pick-up"}</p>
                     </Modal.Header>
                     <Modal.Body>
                         <ListGroup>

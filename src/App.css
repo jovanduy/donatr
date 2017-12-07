@@ -96,6 +96,10 @@ textarea {
     color: #4e9cbe;
 }
 
+.result-pictures {
+    margin: 30px 0;
+}
+
 /* the overall scrollable results list */
 .results {
     height: 500px;
