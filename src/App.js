@@ -92,7 +92,9 @@ class App extends Component {
     clickHome = () => {
         this.setState({
             search: '',
-            currentPage: pages.home
+            currentPage: pages.home,
+            showGhost: true,
+            typing: true
         });
     }
 
