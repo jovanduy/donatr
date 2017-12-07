@@ -54,7 +54,7 @@ class SchedulePickup extends Component {
         return (
             <div className="schedule-pickup">
                 <h3 style={this.state.labelStyle}><Label bsStyle="success">Successfully scheduled pickup!</Label></h3>
-                <Button className="back" bsStyle="link" onClick={this.handleBackClick} active={false}>{"< Result"}</Button>
+                <Button className="back" bsStyle="link" onClick={this.handleBackClick} active={false}>{"< " + this.props.centerName + " info page"}</Button>
                 <h3>{this.props.title}</h3>
                 <ControlLabel>Who do you want to pickup your items?</ControlLabel>
                 <p className="pickup-summary">{this.props.pickupStyle ? employeeText : volunteerText}</p>

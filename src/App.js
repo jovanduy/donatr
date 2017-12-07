@@ -296,7 +296,7 @@ class App extends Component {
                 );
             case pages.pickup:
                 return (
-                    <SchedulePickup title={this.state.result.title + " pickup"} pickupStyle={this.state.pickupStyle} togglePickup={this.handleChangeCenterPickup} goBack={this.handleBackToResult} />
+                    <SchedulePickup centerName={this.state.result.title} title={this.state.result.title + " pickup"} pickupStyle={this.state.pickupStyle} togglePickup={this.handleChangeCenterPickup} goBack={this.handleBackToResult} />
                 );
             default:
                 return (

@@ -25,7 +25,7 @@ class Result extends Component {
     render() {
         return (
             <div className="result">
-                <Button className="back" bsStyle="link" onClick={this.handleBackClick}>{"< Results"}</Button>
+                <Button className="back" bsStyle="link" onClick={this.handleBackClick}>{"< Results list"}</Button>
                 <Media>
                     <Media.Left>
                         <div style={{width: "100px", height: "100px", backgroundColor:"gray", borderRadius: "50px", textAlign: "center"}}>
