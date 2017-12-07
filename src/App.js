@@ -35,7 +35,8 @@ class App extends Component {
             pickupStyle: 0, // 0 is center employee, 1 is volunteer
             version: 0,
             v: 0,
-            showGhost: true
+            showGhost: true,
+            typing: true
         };
     }
 
@@ -307,6 +308,12 @@ class App extends Component {
         document.getElementById("searchBar").focus();
     }
 
+    handleFinishTypistLoop = () => {
+        this.setState({ typing: false }, () => {
+            this.setState({ typing: true })
+        });
+    }
+
   render() {
     // This is the main page! 
     // The header is always there
@@ -324,21 +331,27 @@ class App extends Component {
             {
                 (this.state.currentPage === pages.home) || (this.state.currentPage === pages.results)  ?
                 <div className="search-container" onClick={this.hideGhost}>
-                    <Typist className={typistClass} >
-                        <span className="typist">centers near Boston, MA</span>
-                        <Typist.Backspace count={23} delay={500} />
-                        <span className="typist">furniture</span>
-                        <Typist.Backspace count={9} delay={500} />
-                        <span className="typist">clothes</span>
-                        <Typist.Backspace count={7} delay={500} />
-                        <span className="typist">couch</span>
-                        <Typist.Backspace count={5} delay={500} />
-                        <span className="typist">animal shelters</span>
-                        <Typist.Backspace count={15} delay={500} />
-                        <span className="typist">disaster relief</span>
-                        <Typist.Backspace count={15} delay={500} />
-                        <span className="typist">what do you want to search?</span>
-                    </Typist>
+                    { this.state.typing ? 
+                        <Typist
+                            className={typistClass}
+                            onTypingDone={this.handleFinishTypistLoop}
+                        >
+                            <span className="typist">centers near Boston, MA</span>
+                            <Typist.Backspace count={23} delay={500} />
+                            <span className="typist">furniture</span>
+                            <Typist.Backspace count={9} delay={500} />
+                            <span className="typist">clothes</span>
+                            <Typist.Backspace count={7} delay={500} />
+                            <span className="typist">couch</span>
+                            <Typist.Backspace count={5} delay={500} />
+                            <span className="typist">animal shelters</span>
+                            <Typist.Backspace count={15} delay={500} />
+                            <span className="typist">disaster relief</span>
+                            <Typist.Backspace count={15} delay={500} />
+                            <span className="typist">what do you want to search?</span>
+                        </Typist>
+                        : ''
+                    }
                     <form className="searchBar">
                         <FormGroup controlId="searchBar">
                             <FormControl 
