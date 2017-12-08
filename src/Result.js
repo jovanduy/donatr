@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Media, Button, Modal, Well, Panel } from 'react-bootstrap';
+import { Media, Button, Panel } from 'react-bootstrap';
 
 // component for an individual result page
 class Result extends Component {
@@ -49,6 +49,10 @@ class Result extends Component {
                         <span>Map</span>
                     </div>
                 </div>
+                <div className="result-info">
+                    <p><span className="accept">accepts: </span><span>{this.props.data.accepts}</span></p>
+                    <p><span className="accept">doesn't accept: </span><span>{this.props.data.no}</span></p>
+                </div>
                 <div className="hours">
                     <p className="bold">Hours:</p>
                     <p>S 7:00am - 5:00pm</p>
@@ -59,14 +63,13 @@ class Result extends Component {
                     <p>F 7:00am - 5:00pm</p>
                     <p>S 7:00am - 5:00pm</p>
                 </div>
-                <p><span className="accept">accepts: </span><span>{this.props.data.accepts}</span></p>
-                <p><span className="accept">doesn't accept: </span><span>{this.props.data.no}</span></p>
-                { !this.props.loggedIn &&
-                    <Panel header={'Stop!'} bsStyle="danger">
-                        You have to be logged in to schedule a pickup! Clicking this schedule button will prompt you to login and return you to this page.
+                { this.props.loggedIn 
+                    ? <Button bsStyle="primary" onClick={this.handleRequestPickup} className="schedule-pickup-btn">schedule pickup</Button>
+                    : <Panel header={'Stop!'} bsStyle="danger" className="login-warning">
+                        <p>You have to be logged in to schedule a pickup! Clicking this schedule button will prompt you to login and return you to this page.</p>
+                        <Button bsStyle="primary" onClick={this.handleRequestPickup} className="schedule-pickup-btn">schedule pickup</Button>
                     </Panel>
                 }
-                <Button bsStyle="primary" onClick={this.handleRequestPickup}>schedule pickup</Button>
             </div>
         );
     }

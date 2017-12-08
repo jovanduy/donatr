@@ -35,15 +35,18 @@ textarea {
 .hide {
     display: none;
 }
+
 .typist {
   position: absolute; /* to align it to right and positon it over the input */
-  top: 10px;
+  top: 7.5px;
   left: 12px;
 }
+
 .Cursor {
 
     display: none;
 }
+
 .typist {
     position: absolute;
     color: lightgray;
@@ -134,14 +137,48 @@ textarea {
 }
 
 .hours {
-    float: right;
     line-height: .5em;
-    margin-right: 14%;
 }
 
 .bold {
     font-weight: bold;
 }
+
+@media screen and (min-width: 500px) {
+    .hours {
+        float: right;
+        margin-right: 14%;
+    }
+
+    .login-warning {
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width: 499px) {
+    .hours {
+    }
+
+    .login-warning {
+        display: inline-block;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        text-align: center;
+    }
+
+    .schedule-pickup-btn {
+        text-align: center;
+        display: inline-block;
+    }
+
+}
+
+.result-info {
+    display: inline-block;
+}
+
+
 
 .login-form-div {
     display: block;
