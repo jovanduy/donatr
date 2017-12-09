@@ -6,10 +6,6 @@ class Profile extends Component {
 
     constructor() {
         super();
-        this.toggleSchedule = this.toggleSchedule.bind(this);
-        this.toggleBenefits = this.toggleBenefits.bind(this);
-        this.toggleHistory = this.toggleHistory.bind(this);
-        this.toggleSettings = this.toggleSettings.bind(this);
         // this state basically just holds the values for whether or 
         // not each thing should be expanded
         this.state = {
@@ -23,7 +19,7 @@ class Profile extends Component {
     // callback to toggle whether the schedule section is expanded
     // by setting state.schedule to the opposite of whatever it
     // previously was
-    toggleSchedule() {
+    toggleSchedule = () => {
         this.setState((prevState, props) => {
             return {
                 schedule: !prevState.schedule
@@ -31,7 +27,7 @@ class Profile extends Component {
         });
     }
 
-    toggleBenefits() {
+    toggleBenefits = () => {
         this.setState((prevState, props) => {
             return {
                 benefits: !prevState.benefits
@@ -39,7 +35,7 @@ class Profile extends Component {
         });
     }
 
-    toggleHistory() {
+    toggleHistory = () => {
         this.setState((prevState, props) => {
             return {
                 history: !prevState.history
@@ -47,7 +43,7 @@ class Profile extends Component {
         });
     }
 
-    toggleSettings() {
+    toggleSettings = () => {
         this.setState((prevState, props) => {
             return {
                 settings: !prevState.settings
@@ -59,7 +55,8 @@ class Profile extends Component {
     render() {
         return (
             <div className="profile">
-                <p>{this.props.username[0]}</p>
+                <p className="username">{this.props.username[0]}</p>
+                <p className="welcome">{ 'Welcome back, ' + this.props.username + '.'}</p>
                 <ListGroup>
                     <ListGroupItem onClick={this.toggleSchedule}>
                         Scheduled pickups
@@ -73,14 +70,29 @@ class Profile extends Component {
                         <span className="arrow">{this.state.benefits ? '∨' : '>'}</span>
                     </ListGroupItem>
                     <Panel collapsible expanded={this.state.benefits}>
-                        You've donated a lot
+                        You've donated
+                        <h2>$475</h2>
+                        worth of tax deductions.
+                        <p className="details">What does this mean?</p>
+                        <p className="more-info">view benefit breakdown</p>
                     </Panel>
                     <ListGroupItem onClick={this.toggleHistory}>
                         Donation history
                         <span className="arrow">{this.state.history ? '∨' : '>'}</span>
                     </ListGroupItem>
                     <Panel collapsible expanded={this.state.history}>
-                        You've donated a lot
+                        <span className="section">September 25, 2017</span>
+                            <br/>
+                            <span className="section">Donation to</span>
+                            <span className="section-details">Goodwill, Jamaica Plain, MA</span>
+                            <br/>
+                            <span className="section">Goods donated</span>
+                            <span className="section-details">blue couch, bag of clothing</span>
+                            <br/>
+                            <span className="section">Benefits accrued</span>
+                            <span className="section-details">tax deductible donation valued at $400</span>
+
+                        <p className="more-info">view more</p>
                     </Panel>
                     <ListGroupItem onClick={this.toggleSettings}>
                         Settings

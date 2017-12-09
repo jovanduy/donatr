@@ -1,3 +1,8 @@
+:root {
+    --link-blue: #7DAAFF;
+    --text-gray: #C2C2C2;
+}
+
 .App {
   padding: 20px;
   font-family: 'Roboto', sans-serif;
@@ -36,6 +41,7 @@ textarea {
     display: none;
 }
 
+/* Typist */
 .typist {
   position: absolute; /* to align it to right and positon it over the input */
   top: 7.5px;
@@ -58,6 +64,7 @@ textarea {
     z-index: 2;
     width: 100%;
 }
+/* end of Typist-related things */
 
 .header {
   padding-bottom: 20px;
@@ -89,6 +96,8 @@ textarea {
 .resultSummary {
     cursor: pointer;
     border-bottom: 1px solid lightgray !important;
+    margin-top: 0px !important;
+    padding-top: 15px;
 }
 
 .resultSummary:hover {
@@ -201,6 +210,9 @@ textarea {
     color: white;
 }
 
+
+/*** Profile page ***/
+
 /* arrow that shows wheter a part of the profile page is expanded */
 .arrow {
     color: #7D94B3;
@@ -212,6 +224,40 @@ textarea {
     margin-bottom: 0px;
 }
 
+.profile .details {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--link-blue);
+    cursor: pointer;
+    width: fit-content;
+}
+
+.profile .more-info {
+    color: var(--link-blue);
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+}
+
+.profile .section {
+    color: var(--text-gray);
+    //display: block;
+}
+
+.profile .section-labels {
+    text-align: right;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.profile .section-info {
+    display: inline-block;
+    position: absolute;
+}
+
+.profile .section-details {
+    display: inline-block;
+}
 
 .pickup-summary {
     color: gray;
