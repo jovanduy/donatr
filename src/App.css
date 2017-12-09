@@ -1,6 +1,7 @@
 :root {
     --link-blue: #7DAAFF;
     --text-gray: #C2C2C2;
+    --text-blue: #7D94B3;
 }
 
 .App {
@@ -74,7 +75,7 @@ textarea {
 /* desctiption text on home page */
 .description {
     padding: 20px;
-    color: #7D94B3;
+    color: var(--text-blue);
     font-size: 15px;
 }
 
@@ -215,7 +216,7 @@ textarea {
 
 /* arrow that shows wheter a part of the profile page is expanded */
 .arrow {
-    color: #7D94B3;
+    color: var(--text-blue);
     float: right;
 }
 
@@ -241,18 +242,22 @@ textarea {
 
 .profile .section {
     color: var(--text-gray);
-    //display: block;
 }
 
-.profile .section-labels {
+tbody {
+    border-color: white !important;
+}
+table {
+    border-color: white !important;
+    border-collapse:collapse !important;
+    border: none;
+}
+.profile .section-label {
     text-align: right;
-    display: inline-block;
-    margin-right: 3px;
 }
 
 .profile .section-info {
-    display: inline-block;
-    position: absolute;
+    white-space: initial !important;
 }
 
 .profile .section-details {

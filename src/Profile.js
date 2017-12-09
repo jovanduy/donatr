@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Panel, Table } from 'react-bootstrap';
 
 // Profile page component!
 class Profile extends Component {
@@ -82,16 +82,22 @@ class Profile extends Component {
                     </ListGroupItem>
                     <Panel collapsible expanded={this.state.history}>
                         <span className="section">September 25, 2017</span>
-                            <br/>
-                            <span className="section">Donation to</span>
-                            <span className="section-details">Goodwill, Jamaica Plain, MA</span>
-                            <br/>
-                            <span className="section">Goods donated</span>
-                            <span className="section-details">blue couch, bag of clothing</span>
-                            <br/>
-                            <span className="section">Benefits accrued</span>
-                            <span className="section-details">tax deductible donation valued at $400</span>
-
+                        <Table responsive condensed>
+                            <tbody>
+                                <tr>
+                                    <td className="section section-label">Donation to</td>
+                                    <td className="section-info">Goodwill, Jamaica Plain, MA</td>
+                                </tr>
+                                <tr>
+                                    <td className="section section-label">Goods donated</td>
+                                    <td className="section-info">blue couch, bag of clothing</td>
+                                </tr>
+                                <tr>
+                                    <td className="section section-label">Benefits accrued</td>
+                                    <td className="section-info">tax deductible donation valued at $400</td>
+                                </tr>
+                            </tbody>
+                        </Table>
                         <p className="more-info">view more</p>
                     </Panel>
                     <ListGroupItem onClick={this.toggleSettings}>

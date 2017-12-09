@@ -17,7 +17,9 @@ const pages = {
     result: 2,
     login: 3,
     profile: 4,
-    pickup: 5
+    pickup: 5,
+    pickupSuccess: 6,
+    about: 7
 };
 
 class App extends Component {
