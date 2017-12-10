@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Media, Button, Panel } from 'react-bootstrap';
+import { Media, Button, Panel, Image } from 'react-bootstrap';
+import map from './imgs/map.png';
+import place from './imgs/location.png';
 
 // component for an individual result page
 class Result extends Component {
@@ -41,14 +43,9 @@ class Result extends Component {
                         <p className="address">{this.props.data.address}</p>
                     </Media.Body>
                 </Media>
-                <div className="result-pictures">
-                    <div style={{width: "43%", paddingTop: "32.25%", margin: "5px", display: "inline-block", backgroundColor:"gray", textAlign: "center"}}>
-                        <span>Pic</span>
-                    </div>
-                    <div style={{width: "43%", paddingTop: "32.25%", margin: "5px", display: "inline-block", backgroundColor:"gray", textAlign: "center"}}>
-                        <span>Map</span>
-                    </div>
-                </div>
+            <Image className="result-img" src={map} />
+            <Image className="result-img" src={place} />
+
                 <div className="result-info">
                     <p><span className="accept">accepts: </span><span>{this.props.data.accepts}</span></p>
                     <p><span className="accept">doesn't accept: </span><span>{this.props.data.no}</span></p>
