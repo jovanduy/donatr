@@ -74,9 +74,19 @@ textarea {
 
 /* desctiption text on home page */
 .description {
-    padding: 20px;
+    padding: 5px 0px;
     color: var(--text-blue);
     font-size: 15px;
+}
+
+.learn-more {
+    color: var(--link-blue);
+    cursor: hover;
+    text-decoration: underline;
+}
+
+.description.get-started {
+    margin-bottom: 0px;
 }
 
 /* DONATR text in header */
