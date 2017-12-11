@@ -38,7 +38,8 @@ class App extends Component {
             version: 0,
             v: 0,
             showGhost: true,
-            typing: true
+            typing: true,
+            showLoginExplanation: false
         };
     }
 
@@ -100,18 +101,29 @@ class App extends Component {
         });
     }
 
+    loginFromSchedule = () => {
+        this.setState((prevState, props) => {
+            return {
+                currentPage: pages.login,
+                prevPage: prevState.currentPage,
+                showLoginExplanation: true
+            };
+        });
+    }
+
     // callback to set this.state.currentPage to the
     // login page AND also to keep track of what the previous
     // page was before you were taken to the login page
     // so that after logging in you can be taken back to that
-    // previous page :)
+    // previous page
     // used both when you click on the Login button in the header
     // and when you try to schedule a pickup but are not logged in
     clickLogin = () => {
         this.setState((prevState, props) => {
             return {
                 currentPage: pages.login,
-                prevPage: prevState.currentPage
+                prevPage: prevState.currentPage,
+                showLoginExplanation: false
             };
         });
     }
@@ -286,11 +298,11 @@ class App extends Component {
                 );
             case pages.result:
                 return (
-                    <Result data={this.state.result} goBack={this.handleBackToResults} pickup={this.handleShowSchedulePickup} loggedIn={this.state.loggedIn} goLogin={this.clickLogin} />
+                    <Result data={this.state.result} goBack={this.handleBackToResults} pickup={this.handleShowSchedulePickup} loggedIn={this.state.loggedIn} goLogin={this.loginFromSchedule} />
                 );
             case pages.login:
                 return (
-                    <Login login={this.handleLogin}/>
+                    <Login login={this.handleLogin} showExplanation={this.state.showLoginExplanation}/>
                 );
             case pages.profile:
                 return (
@@ -326,8 +338,7 @@ class App extends Component {
     // The third { } where it says { this.getContents() } refers to the 
     // getContents function above. Basically what that does is based on 
     // which page should be displayed, it will display that component!
-      //
-        const typistClass = this.state.showGhost ? 'show' : 'hide';
+    const typistClass = this.state.showGhost ? 'show' : 'hide';
     return (
         <div className="App" tabindex="0">
             <Header loggedIn={this.state.loggedIn} goHome={this.clickHome} goLogin={this.clickLogin} goProfile={this.clickProfile}/>

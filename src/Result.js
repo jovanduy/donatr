@@ -43,15 +43,15 @@ class Result extends Component {
                         <p className="address">{this.props.data.address}</p>
                     </Media.Body>
                 </Media>
-            <Image className="result-img" src={map} />
-            <Image className="result-img" src={place} />
+                <Image className="result-img" src={map} />
+                <Image className="result-img" src={place} />
 
                 <div className="result-info">
-                    <p><span className="accept">accepts: </span><span>{this.props.data.accepts}</span></p>
-                    <p><span className="accept">doesn't accept: </span><span>{this.props.data.no}</span></p>
+                    <p><span className="accept">Accepts: </span><span>{this.props.data.accepts}</span></p>
+                    <p><span className="accept">Doesn't accept: </span><span>{this.props.data.no}</span></p>
                 </div>
                 <div className="hours">
-                    <p className="bold">Hours:</p>
+                    <p className="bold accept">Hours:</p>
                     <p>S 7:00am - 5:00pm</p>
                     <p>M 7:00am - 5:00pm</p>
                     <p>T 7:00am - 5:00pm</p>
@@ -60,13 +60,7 @@ class Result extends Component {
                     <p>F 7:00am - 5:00pm</p>
                     <p>S 7:00am - 5:00pm</p>
                 </div>
-                { this.props.loggedIn 
-                    ? <Button bsStyle="primary" onClick={this.handleRequestPickup} className="schedule-pickup-btn">schedule pickup</Button>
-                    : <Panel header={'Stop!'} bsStyle="danger" className="login-warning">
-                        <p>You have to be logged in to schedule a pickup! Clicking this schedule button will prompt you to login and return you to this page.</p>
-                        <Button bsStyle="primary" onClick={this.handleRequestPickup} className="schedule-pickup-btn">schedule pickup</Button>
-                    </Panel>
-                }
+                <Button bsStyle="primary" onClick={this.handleRequestPickup} className="schedule-pickup-btn">schedule pickup</Button>
             </div>
         );
     }

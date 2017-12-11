@@ -28,6 +28,9 @@ class Login extends Component {
     render() {
         return(
             <div className="login-form-div">
+            {this.props.showExplanation &&
+                <p>You have to be logged in to schedule a pickup. After you have successfully logged in, you will be returned to the results page you were just on.</p>
+            }
             <form className="login-form">
                 <FormGroup controlId="username">
                     <FormControl

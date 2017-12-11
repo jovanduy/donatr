@@ -125,6 +125,8 @@ textarea {
 
 .result-img {
     width: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* the overall scrollable results list */
@@ -137,6 +139,7 @@ textarea {
 /* the accept text in the result description */
 .accept {
     font-weight: bold;
+    font-size: 16px;
 }
 
 /* the distance text for how far away a result is */
@@ -174,28 +177,17 @@ textarea {
         margin-right: 14%;
     }
 
-    .login-warning {
-        display: inline-block;
+    .schedule-pickup-btn {
+        text-align: center;
+        display: block;
     }
 }
 
 @media screen and (max-width: 499px) {
-    .hours {
-    }
-
-    .login-warning {
-        display: inline-block;
-        width: 90%;
-        margin-left: 5%;
-        margin-right: 5%;
-        text-align: center;
-    }
-
     .schedule-pickup-btn {
         text-align: center;
         display: inline-block;
     }
-
 }
 
 .result-info {
