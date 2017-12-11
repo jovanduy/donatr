@@ -171,6 +171,11 @@ textarea {
     font-weight: bold;
 }
 
+.schedule-pickup-btn {
+    background-color: var(--link-blue);
+    border-color: var(--link-blue);
+}
+
 @media screen and (min-width: 500px) {
     .hours {
         float: right;
@@ -231,6 +236,20 @@ textarea {
     margin-bottom: 0px;
 }
 
+.profile .user {
+    text-align: center;
+}
+
+.profile .username {
+    display: inline-block;
+    font-size: 50px;
+    background-color: #9B51E0;
+    text-align: center;
+    padding-top: 40px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
 .profile .details {
     font-size: 12px;
     font-style: italic;
@@ -260,6 +279,14 @@ table {
 }
 .profile .section-label {
     text-align: right;
+}
+
+.profile .fa {
+    font-size: 40px;
+}
+
+.profile .date {
+    margin-top: 10px;
 }
 
 .profile .section-info {

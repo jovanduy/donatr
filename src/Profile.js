@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, Panel, Table } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Panel, Table, Image, Button, Media } from 'react-bootstrap';
+import graph from './imgs/benefits.png';
 
 // Profile page component!
 class Profile extends Component {
@@ -55,15 +56,35 @@ class Profile extends Component {
     render() {
         return (
             <div className="profile">
-                <p className="username">{this.props.username[0]}</p>
-                <p className="welcome">{ 'Welcome back, ' + this.props.username + '.'}</p>
+                <div className="user">
+                    <p className="username">{this.props.username[0]}</p>
+                    <p className="welcome">{ 'Welcome back, ' + this.props.username + '.'}</p>
+                </div>
                 <ListGroup>
                     <ListGroupItem onClick={this.toggleSchedule}>
                         Scheduled pickups
                         <span className="arrow">{this.state.schedule ? '∨' : '>'}</span>
                     </ListGroupItem>
                     <Panel collapsible expanded={this.state.schedule}>
-                        Hifdskal
+                        <p>Your next pickup is</p>
+                        <h2 className="date">Dec. 15 at 12pm</h2>
+                        <Media>
+                            <Media.Left>
+                                <span className="profile fa fa-user-circle-o"></span>
+                            </Media.Left>
+                            <Media.Body>
+                                <span className="section">Your driver is</span>
+                                <br />
+                                <span>Amon M.</span>
+                            </Media.Body>
+                            <Media.Right>
+                                <Button bsStyle="primary" className="schedule-pickup-btn">contact driver</Button>
+                            </Media.Right>
+                        </Media>
+                        <span className="section">Pickup address</span>
+                        <br />
+                        <span>1000 Olin Way, Needham, MA 02492</span>
+                        <Button bsStyle="primary" className="schedule-pickup-btn">edit pickup</Button>
                     </Panel>
                     <ListGroupItem onClick={this.toggleBenefits}>
                         Donation benefits overview
@@ -74,6 +95,7 @@ class Profile extends Component {
                         <h2>$475</h2>
                         worth of tax deductions.
                         <p className="details">What does this mean?</p>
+                        <Image src={graph} />
                         <p className="more-info">view benefit breakdown</p>
                     </Panel>
                     <ListGroupItem onClick={this.toggleHistory}>
@@ -105,7 +127,7 @@ class Profile extends Component {
                         <span className="arrow">{this.state.settings ? '∨' : '>'}</span>
                     </ListGroupItem>
                     <Panel collapsible expanded={this.state.settings}>
-                        You've donated a lot
+                        Typical settings
                     </Panel>
                     <ListGroupItem bsStyle="danger" onClick={this.props.logout}>Logout</ListGroupItem>
                 </ListGroup>
