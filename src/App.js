@@ -8,6 +8,7 @@ import Result from './Result';
 import Login from './Login';
 import Profile from './Profile';
 import SchedulePickup from './SchedulePickup';
+import PickupSuccess from './PickupSuccess';
 import SelectVersion from './SelectVersion';
 import './App.css';
 
@@ -267,6 +268,12 @@ class App extends Component {
         });
     }
 
+    handlePickupSuccess = () => {
+        this.setState({
+            currentPage: pages.pickupSuccess
+        });
+    }
+
     // callback to set whether or not the user is scheduling a pickup
     // through the center or through volunteer
     handleShowSchedulePickup = () => {
@@ -310,7 +317,11 @@ class App extends Component {
                 );
             case pages.pickup:
                 return (
-                    <SchedulePickup centerName={this.state.result.title} title={this.state.result.title + " pickup"} pickupStyle={this.state.pickupStyle} togglePickup={this.handleChangeCenterPickup} goBack={this.handleBackToResult} />
+                    <SchedulePickup centerName={this.state.result.title} title={this.state.result.title + " pickup"} pickupStyle={this.state.pickupStyle} togglePickup={this.handleChangeCenterPickup} goBack={this.handleBackToResult} confirmPickup={this.handlePickupSuccess} />
+                );
+            case pages.pickupSuccess:
+                return (
+                    <PickupSuccess />
                 );
             default:
                 return (

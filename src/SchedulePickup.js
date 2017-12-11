@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Breadcrumb, Button, ControlLabel, FormGroup, FormControl, FieldGroup, ListGroup, ListGroupItem, Modal, Label, ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-const employeeText = "An employee of the donation center will meet you at the specified location to pickup your items and bring them to the center.";
-const volunteerText = "A volunteer, who is unafilliated with the donation center or Donatr, but is just another user of Donatr, will meet you at the specified location to pickup your items and bring them to the center.";
+const employeeText = "Someone will meet you at the specified location to pickup your items and bring them to the center.";
+const volunteerText = "Choose if you prefer this person to be an employee of the donation center or a volunteer, who is unafilliated with the donation center or Donatr, but is just another user of Donatr.";
 
 class SchedulePickup extends Component {
 
@@ -16,14 +16,13 @@ class SchedulePickup extends Component {
         this.confirmPickup = this.confirmPickup.bind(this);
         this.state = {
             modal: false,
-            date: null,
-            labelStyle: {display: "none"}
+            date: null
         };
     }
 
     // callback to show the modal dialog
     showModal() {
-        this.setState({modal: true, labelStyle: {display: "none"}});
+        this.setState({modal: true});
     }
 
     // callback to close the modal dialog
@@ -35,14 +34,13 @@ class SchedulePickup extends Component {
     // callback for when user presses the "use other kind of pickup" button
     // in order to toggle the type of pickup (employee/center vs. volunteer)
     togglePickup(val) {
-        this.setState({labelStyle: {display: "none"}});
         this.props.togglePickup(val);
     }
 
     // callback for when the user clicks confirm in the modal popup
     confirmPickup() {
         this.closeModal();
-        this.setState({labelStyle: {display: "block", textAlign: 'center', margin: 'auto', display: 'table'}});
+        this.props.confirmPickup();
     }
 
     // callback for when user presses the "back" button
@@ -53,12 +51,11 @@ class SchedulePickup extends Component {
     render() {
         return (
             <div className="schedule-pickup">
-                <h3 style={this.state.labelStyle}><Label bsStyle="success">Successfully scheduled pickup!</Label></h3>
                 <Button className="back" bsStyle="link" onClick={this.handleBackClick} active={false}>{"< " + this.props.centerName + " info page"}</Button>
                 <h3>{this.props.title}</h3>
                 <ControlLabel>Who do you want to pickup your items?</ControlLabel>
-                <p className="pickup-summary">{this.props.pickupStyle ? employeeText : volunteerText}</p>
-                <p className="pickup-summary">{this.props.pickupStyle ? volunteerText : employeeText }</p>
+                <p className="pickup-summary">{employeeText}</p>
+                <p className="pickup-summary">{volunteerText}</p>
                 <ButtonToolbar>
                     <ToggleButtonGroup
                         type="radio" 
