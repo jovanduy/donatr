@@ -49,6 +49,7 @@ class Result extends Component {
                 <div className="result-info">
                     <p><span className="accept">Accepts: </span><span>{this.props.data.accepts}</span></p>
                     <p><span className="accept">Doesn't accept: </span><span>{this.props.data.no}</span></p>
+                    <p><span className="accept">Summary: </span><span>{this.props.data.title + ' is a nonprofit organization that provides job training, employment placement services, and other community-based programs for people who have barriers preventing them from otherwise obtaining a job. They operate second-hand stores across the United States.'}</span></p>
                 </div>
                 <div className="hours">
                     <p className="bold accept">Hours:</p>
