@@ -45,7 +45,7 @@ class Login extends Component {
                     />
                 </FormGroup>
 
-                <Button block className="login-button" onClick={this.handleLogin} type="submit">
+                <Button block className="login-button" onClick={this.handleLogin}>
                     login
                 </Button>
                 <Button block className="facebook login-button" onClick={this.handleLogin}>
